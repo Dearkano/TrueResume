@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.6</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="dist\**" />
+    <Content Remove="dist\**" />
+    <EmbeddedResource Remove="dist\**" />
+    <None Remove="dist\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\static\main.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="app.tsx" />
+    <None Remove="Utility.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="wwwroot\static\main.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="App.tsx" />
+    <TypeScriptCompile Include="Utility.ts" />
+  </ItemGroup>
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="node &quot;$(ProjectDir)node_modules\webpack\bin\webpack.js&quot;&#xD;&#xA;" />
+  </Target>
+</Project>
