@@ -65,8 +65,8 @@ var UserCenter = /** @class */ (function (_super) {
                         React.createElement("tr", null,
                             React.createElement("td", null, "\u4E13\u5229\u6570\u91CF"),
                             React.createElement("td", null, resume.patent)))),
-                React.createElement(react_bootstrap_1.Button, { onClick: this.accept.bind(this) }, "\u901A\u8FC7"),
-                React.createElement(react_bootstrap_1.Button, { onClick: this.refuse.bind(this) }, "\u62D2\u7EDD"));
+                React.createElement(react_bootstrap_1.Button, { style: { marginTop: "25px", width: "200px" }, bsStyle: "success", onClick: this.accept.bind(this) }, "\u901A\u8FC7"),
+                React.createElement(react_bootstrap_1.Button, { style: { marginTop: "25px", width: "200px" }, bsStyle: "danger", onClick: this.refuse.bind(this) }, "\u62D2\u7EDD"));
         }
         return React.createElement("div", null, UI);
     };

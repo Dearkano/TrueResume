@@ -53,8 +53,8 @@ export class UserCenter extends React.Component<{}, {}>{
                     </tr>                    
                 </tbody>
             </Table>
-                <Button onClick={this.accept.bind(this)}>通过</Button>
-                <Button onClick={this.refuse.bind(this)}>拒绝</Button>
+                <Button style={{ marginTop: "25px", width: "200px" }}  bsStyle="success" onClick={this.accept.bind(this)}>通过</Button>
+                <Button style={{ marginTop:"25px",width:"200px" }} bsStyle="danger" onClick={this.refuse.bind(this)}>拒绝</Button>
                 </div>;
         }
         return <div>{UI}</div>;
