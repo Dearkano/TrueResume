@@ -17,7 +17,7 @@ function login(name, org) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = "http://47.100.192.19:4000/users";
+                    url = "http://47.100.192.19:4010/users";
                     headers = {
                         "Content-Type": "application/x-www-form-urlencoded"
                     };
@@ -34,13 +34,40 @@ function login(name, org) {
     });
 }
 exports.login = login;
+function trim(str) {
+    return str.replace(/\s|\xA0|\x00/g, "");
+}
+exports.trim = trim;
+function outASCii(str) {
+    var len = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        console.log(parseInt(c));
+    }
+}
+exports.outASCii = outASCii;
+function strlen(str) {
+    var len = 0;
+    for (var i = 0; i < str.length; i++) {
+        var c = str.charCodeAt(i);
+        //单字节加1 
+        if ((c >= 0x0001 && c <= 0x007e) || (0xff60 <= c && c <= 0xff9f)) {
+            len++;
+        }
+        else {
+            len += 2;
+        }
+    }
+    return len;
+}
+exports.strlen = strlen;
 function createChannel(token) {
     return tslib_1.__awaiter(this, void 0, void 0, function () {
         var url, headers, body, response;
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://47.100.192.19:4000/channels';
+                    url = 'http://47.100.192.19:4010/channels';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     body = {
                         "channelName": "mychannel",
@@ -62,10 +89,13 @@ function joinChannel(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://47.100.192.19:4000/channels/mychannel/peers';
+                    url = 'http://47.100.192.19:4010/channels/mychannel/peers';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     body = {
-                        "peers": ["peer0.org1.example.com", "peer1.org1.example.com"]
+                        "peers": [
+                            "peer0.org1.example.com",
+                            "peer1.org1.example.com",
+                        ]
                     };
                     return [4 /*yield*/, fetch(url, { method: "POST", headers: headers, body: JSON.stringify(body) })];
                 case 1:
@@ -83,10 +113,10 @@ function installChaincode(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://47.100.192.19:4000/chaincodes';
+                    url = 'http://47.100.192.19:4010/chaincodes';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     body = {
-                        "peers": ["peer0.org1.example.com", "peer1.org1.example.com"],
+                        "peers": ["peer0.org1.example.com", "peer1.org1.example.com",],
                         "chaincodeName": "mycc",
                         "chaincodePath": "github.com/example_cc/go",
                         "chaincodeType": "golang",
@@ -108,7 +138,7 @@ function instantiateChaincode(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://47.100.192.19:4000/channel/mychannel/chaincodes';
+                    url = 'http://47.100.192.19:4010/channels/mychannel/chaincodes';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     body = {
                         "peers": ["peer0.org1.example.com", "peer1.org1.example.com"],
@@ -133,7 +163,7 @@ function invoke(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://47.100.192.19:4000/channels/mychannel/chaincodes/mycc';
+                    url = 'http://47.100.192.19:4010/channels/mychannel/chaincodes/mycc';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     body = {
                         "peers": ["peer0.org1.example.com", "peer1.org1.example.com"],
@@ -156,7 +186,7 @@ function query(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://47.100.192.19:4000/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=query&args=%5B%22a%22%5D';
+                    url = 'http://47.100.192.19:4010/channels/mychannel/chaincodes/mycc?peer=peer0.org1.example.com&fcn=query&args=%5B%22a%22%5D';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:
@@ -174,7 +204,7 @@ function queryBlock(token, id) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://localhost:4000/channels/mychannel/blocks/' + id + '?peer=peer0.org1.example.com';
+                    url = 'http://47.100.192.19:4010/channels/mychannel/blocks/' + id + '?peer=peer0.org1.example.com';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:
@@ -192,7 +222,7 @@ function queryTraction(token, id) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://localhost:4000/channels/mychannel/transactions/' + id + '?peer=peer0.org1.example.com';
+                    url = 'http://47.100.192.19:4010/channels/mychannel/transactions/' + id + '?peer=peer0.org1.example.com';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:
@@ -210,7 +240,7 @@ function queryChainInfo(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = 'http://localhost:4000/channels/mychannel?peer=peer0.org1.example.com';
+                    url = 'http://47.100.192.19:4010/channels/mychannel?peer=peer0.org1.example.com';
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:
@@ -228,7 +258,7 @@ function queryInstalledChaincode(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = "http://localhost:4000/chaincodes?peer=peer0.org1.example.com&type=installed";
+                    url = "http://47.100.192.19:4010/chaincodes?peer=peer0.org1.example.com&type=installed";
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:
@@ -246,7 +276,7 @@ function queryInstantiatedChaincode(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = "http://localhost:4000/chaincodes?peer=peer0.org1.example.com&type=instantiated";
+                    url = "http://47.100.192.19:4010/chaincodes?peer=peer0.org1.example.com&type=instantiated";
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:
@@ -264,7 +294,7 @@ function queryChannels(token) {
         return tslib_1.__generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    url = "http://localhost:4000/channels?peer=peer0.org1.example.com";
+                    url = "http://47.100.192.19:4010/channels?peer=peer0.org1.example.com";
                     headers = { "Authorization": "Bearer " + token, "Content-Type": "application/json" };
                     return [4 /*yield*/, fetch(url, { headers: headers })];
                 case 1:

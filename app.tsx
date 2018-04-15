@@ -1,48 +1,46 @@
 ﻿import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as Utilty from "./Utility";
-
-export class App extends React.Component<{}, { token }>{
-    constructor(props) {
-        super(props);
-        this.state = { token: "" };
-    }
-    async login() {
-        const token = await Utilty.login("Jim", "Org1");
-
-        this.setState({ token: token});
-    }
-    async createChannel() {
-        await Utilty.createChannel(this.state.token);
-    }
-    async joinChannel() {
-        await Utilty.joinChannel(this.state.token);
-    }
-    async installChaincode() {
-        await Utilty.installChaincode(this.state.token);
-    }
-    async instantiateChaincode() {
-        await Utilty.instantiateChaincode(this.state.token);
-    }
-    async invoke() {
-        await Utilty.invoke(this.state.token);
-    }
-    async query() {
-        await Utilty.query(this.state.token);
-    }
+import { Navbar, Nav, MenuItem, NavItem, NavDropdown,Tab,Tabs } from 'react-bootstrap';
+import {
+    BrowserRouter as Router,
+    Route,
+    Switch
+} from 'react-router-dom';
+import { Header } from './Components/Header';
+import { Footer } from './Components/Footer';
+import { MainPage } from './Components/MainPage';
+import { APITest } from './Components/APITest';
+import { HyperChainAPITest } from './Components/HyperChainAPITest';
+import {LogIn} from "./Components/LogIn";
+import { LogOut } from "./Components/LogOut";
+import { MyResume } from "./Components/MyResume";
+import { Veryify } from "./Components/Veryify";
+import { UserCenter } from "./Components/UserCenter";
+export class App extends React.Component<{}, {}>{
     render() {
-        return <div style={{ display: "flex", flexDirection: "column" }}>
-            <div>token = {this.state.token}</div>
-            <div onClick={this.login.bind(this)}>login</div>
-            <div onClick={this.createChannel.bind(this)}>createChannel</div>
-            <div onClick={this.joinChannel.bind(this)}>joinChannel</div>
-            <div onClick={this.installChaincode.bind(this)}>installChaincode</div>
-            <div onClick={this.instantiateChaincode.bind(this)}>instantiateChaincode</div>
-            <div onClick={this.invoke.bind(this)}>invoke</div>
-            <div onClick={this.query.bind(this)}>query</div>
-        </div>;
+        return <Router>
+            <div className="root">
+                <Header />
+                <Route exact path="/" component={MainPage} />
+                <Route exact path="/apitest" component={HyperChainAPITest} />
+                <Route exact path ="/login" component = {LogIn} />
+                <Route exact path="/logout" component={LogOut} />
+                <Route exact path="/myresume" component={MyResume} />
+                <Route exact path="/verify" component={Veryify} />
+                <Route exact path="/usercenter" component={UserCenter} />
+                <Footer />
+            </div>
+            </Router>
+        ;
     }
 }
+
+
+
+
+
+
+
 
 ReactDOM.render(
     <App />,

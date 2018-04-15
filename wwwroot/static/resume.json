@@ -1,0 +1,17 @@
+﻿[
+  {
+    "name": "Mikasa",
+    "age": "18",
+    "education": "常盘台",
+    "paper": "0",
+    "patent": "12"
+
+  },
+  {
+    "name": "吴朝晖",
+    "age": "52",
+    "education": "浙江大学博士",
+    "paper": "180",
+    "patent": "120"
+  }
+]

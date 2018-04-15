@@ -9,10 +9,17 @@ var config = {
         }
         ]
     },
-    resolve: {
-        extensions: ['.js', '.ts','jsx','tsx']
+    node: {
+
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     },
-    entry: ['./app.tsx'],
+
+    resolve: {
+        extensions: ['.js', '.ts','.jsx','.tsx']
+    },
+    entry: ['./App.tsx'],
     /*externals: {
         'react': 'React'
     },*/
