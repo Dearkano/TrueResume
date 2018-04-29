@@ -23,7 +23,7 @@ export class UserCenter extends React.Component<{}, {}>{
         if (localStorage.getItem("myResumeData")) {
             Args = localStorage.getItem("myResumeData");
             const resume = JSON.parse(JSON.parse(Args)[2]);
-            UI = <div className="column"> <Table striped bordered condensed hover>
+            UI = <div className="column" style={{ alignItems:"center" }}> <Table striped bordered condensed hover>
                 <thead>
                     <tr>
                         <th>条目</th>

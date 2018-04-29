@@ -182,8 +182,12 @@ function Account(name, psw) {
                     };
                     localStorage.setItem("myResume", JSON.stringify(data));
                 }
+                else if (name === "Mana" && localStorage.getItem("seeacc") === "true") {
+                    localStorage.setItem("seeacc", "false");
+                }
                 else if (name === "Mana") {
                     localStorage.removeItem("myResume");
+                    localStorage.setItem("seeacc", "true");
                 }
                 return true;
             }

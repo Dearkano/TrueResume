@@ -24,10 +24,10 @@ export class HyperChainAPITest extends React.Component<{}, {tip, dat,token ,resu
     async invokeContract() {
         const rs = {
             name: "吴朝晖",
-            age: 52,
+            age: "52",
             education: "浙江大学博士",
-            paper: 180,
-            patent:120
+            paper: "180",
+            patent:"120"
         }
         const Args = Hyperchain.FormData(["Vayne", "吴朝晖", JSON.stringify(rs)]);
         console.log(JSON.stringify(rs));

@@ -5,25 +5,25 @@ async function test() {
 }
 async function HCFetch(_url, jsonStr) {
     const token = localStorage.getItem("token");
-    const headers = { "Authorization": token, "Content-Type": "application/json", "Accept": "application/json", "Origin":"chrome-extension://eajclkbhbmkkkpbdedfhmeffeobjkgid"};
+    const headers = { "Authorization": token, "Content-Type": "application/json", "Accept": "application/json", "Origin": "chrome-extension://eajclkbhbmkkkpbdedfhmeffeobjkgid" };
     const url = `https://api.hyperchain.cn/v1/` + _url;
-   const response = await fetch(url, { method: "POST", headers, body: jsonStr });
+    const response = await fetch(url, { method: "POST", headers, body: jsonStr });
     const data = await response.json();
     return data;
-   /* request({
-        url: url,
-        method: "POST",
-        headers: headers,
-        body: jsonStr
-    }, function (error, response, body1) {
-        if (!error && response.statusCode == 200) {
-            var body2 = JSON.parse(body1);
-            var rs = body2.Cts;
-            console.log(rs[0]);
-            return rs[0];
-        }
-    }); 
-    return null;*/
+    /* request({
+         url: url,
+         method: "POST",
+         headers: headers,
+         body: jsonStr
+     }, function (error, response, body1) {
+         if (!error && response.statusCode == 200) {
+             var body2 = JSON.parse(body1);
+             var rs = body2.Cts;
+             console.log(rs[0]);
+             return rs[0];
+         }
+     }); 
+     return null;*/
 }
 
 export async function GetToken() {
@@ -50,17 +50,17 @@ export async function GetToken() {
             localStorage.setItem("token", token);
         }
     }); */
- 
-  
-   /* const option = {
-        json: true,
-        header: headers,
-        body: body
-    };
-    request.post(url, option, function (error, response, body) {
-        console.log(body);
-    });
-    */
+
+
+    /* const option = {
+         json: true,
+         header: headers,
+         body: body
+     };
+     request.post(url, option, function (error, response, body) {
+         console.log(body);
+     });
+     */
 }
 function resultFunction(callback, error, response, body) {
     if (!error && response.statusCode === 200) {
@@ -83,7 +83,7 @@ export async function CompileContract() {
     localStorage.setItem("Bin", Bin);
 }
 
-export async function DeployContract(){
+export async function DeployContract() {
     const addr = "be0d7d79dbd922bebc4aab63045ebee529f18395";
     localStorage.setItem("address", addr);
     const Bin = localStorage.getItem("Bin");
@@ -101,7 +101,7 @@ export async function GetPayload(Args, func) {
     const data = await HCFetch(url, JSON.stringify(body));
     return data;
 }
-export async function InvokeContract(Args,func) {
+export async function InvokeContract(Args, func) {
     const url = "dev/contract/invokesync";
     const PayLoad = await GetPayload(Args, func);
     const From = localStorage.getItem("address");
@@ -111,7 +111,7 @@ export async function InvokeContract(Args,func) {
     return data;
 }
 
-export function FormData(Args:string[]) {
+export function FormData(Args: string[]) {
     //生成md5
     var str = Args[2].toString();
     console.log("formdata str=" + str);
@@ -124,11 +124,11 @@ export function FormData(Args:string[]) {
 
 export function Account(name, psw) {
     var accounts = [
-        { name:"Vayne", password:"vayne" },
-        { name:"Mana", password:"mana" },
+        { name: "Vayne", password: "vayne" },
+        { name: "Mana", password: "mana" },
         { name: "HR", password: "hr" },
         { name: "CA", password: "ca" },
-        {name:"Myrcella",password:"myrcella"}
+        { name: "Myrcella", password: "myrcella" }
     ];
     for (var ac of accounts) {
         if (name === ac.name) {
@@ -142,9 +142,12 @@ export function Account(name, psw) {
                         patent: 120
                     }
                     localStorage.setItem("myResume", JSON.stringify(data));
+                } else if (name === "Mana" && localStorage.getItem("seeacc") === "true") {
+                    localStorage.setItem("seeacc", "false");
                 }
-                else if(name==="Mana"){
+                else if (name === "Mana") {
                     localStorage.removeItem("myResume");
+                    localStorage.setItem("seeacc", "true");
                 }
                 return true;
             }

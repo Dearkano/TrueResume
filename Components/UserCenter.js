@@ -42,7 +42,7 @@ var UserCenter = /** @class */ (function (_super) {
         if (localStorage.getItem("myResumeData")) {
             Args = localStorage.getItem("myResumeData");
             var resume = JSON.parse(JSON.parse(Args)[2]);
-            UI = React.createElement("div", { className: "column" },
+            UI = React.createElement("div", { className: "column", style: { alignItems: "center" } },
                 " ",
                 React.createElement(react_bootstrap_1.Table, { striped: true, bordered: true, condensed: true, hover: true },
                     React.createElement("thead", null,
