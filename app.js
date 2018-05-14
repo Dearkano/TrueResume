@@ -13,6 +13,7 @@ var LogOut_1 = require("./Components/LogOut");
 var MyResume_1 = require("./Components/MyResume");
 var Veryify_1 = require("./Components/Veryify");
 var UserCenter_1 = require("./Components/UserCenter");
+var NebulasTest_1 = require("./Components/NebulasTest");
 var App = /** @class */ (function (_super) {
     tslib_1.__extends(App, _super);
     function App() {
@@ -29,6 +30,7 @@ var App = /** @class */ (function (_super) {
                 React.createElement(react_router_dom_1.Route, { exact: true, path: "/myresume", component: MyResume_1.MyResume }),
                 React.createElement(react_router_dom_1.Route, { exact: true, path: "/verify", component: Veryify_1.Veryify }),
                 React.createElement(react_router_dom_1.Route, { exact: true, path: "/usercenter", component: UserCenter_1.UserCenter }),
+                React.createElement(react_router_dom_1.Route, { exact: true, path: "/nebulas", component: NebulasTest_1.NebulasTest }),
                 React.createElement(Footer_1.Footer, null)));
     };
     return App;

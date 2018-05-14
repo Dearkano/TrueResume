@@ -2,6 +2,7 @@
 import * as Hyperchain from "../Hyperchain"
 import { Table, Button } from 'react-bootstrap';
 import * as Utility from '../Utility';
+import * as Nebulas from "../Nebulas"
 import * as md5 from 'md5';
 export class Veryify extends React.Component<{}, {resumes,done,resume1hash,resume1Rhash,resume2hash,resume2Rhash,tip1,tip2}> {
     constructor(props) {
@@ -18,41 +19,42 @@ export class Veryify extends React.Component<{}, {resumes,done,resume1hash,resum
         console.log("jstr=" + jstr);
         const hash = md5(jstr);
         const curUser = localStorage.getItem("HCAccount");
-        const name = this.state.resumes[0].name;
-        const data = await Hyperchain.InvokeContract([curUser, name], "query");
+        //const nameHash = md5(this.state.resumes[0].name);
+        const nameHash = md5(this.state.resumes[0].name);
+        /*const data = await Hyperchain.InvokeContract([curUser, name], "query");
         const Ret = data.Ret;
         var r = Ret.substring(2);
         const buf = new Buffer(r, 'hex');
         const s = buf.toString();
         const bchash1 = Utility.trim(s);
+        */
+        const resume = await Nebulas.queryResume(nameHash);
+        console.log(resume);
         let tip = "验证失败！";
-        const bchash = bchash1.replace(-2,"");
-        if (bchash == hash) tip = "验证成功！";
-        this.setState({ resume1hash: hash, resume1Rhash:bchash,tip1:tip });
+        let resumeHash = resume.resumeHash;
+        if (resumeHash == hash) tip = "验证成功！";
+        this.setState({ resume1hash: hash, resume1Rhash: resumeHash, tip1: tip });
     }
     async veryify2() {
         const jstr = JSON.stringify(this.state.resumes[1]);
-        console.log(jstr);
         const hash = md5(jstr);
         const curUser = localStorage.getItem("HCAccount");
-        const name = this.state.resumes[1].name;
-        const data = await Hyperchain.InvokeContract([curUser, name], "query");
+        const nameHash = md5(this.state.resumes[1].name);
+        console.log("jstr = " + jstr);
+        console.log("verify hash= " + hash);
+        /*const data = await Hyperchain.InvokeContract([curUser, name], "query");
         const Ret = data.Ret;
         var r = Ret.substring(2);
         const buf = new Buffer(r, 'hex');
         const s = buf.toString();
         const bchash1 = Utility.trim(s);
+        */
+        const resume = await Nebulas.queryResume(nameHash);
         let tip = "验证失败！";
-        
-        const bchash = bchash1.replace(-2, "");
-        console.log("----");
-        console.log(hash.length);
-        console.log(bchash.length);
-        console.log(bchash.codePointAt(33));
-        console.log(bchash.codePointAt(39));
-        console.log(bchash.codePointAt(47));
-        if (bchash == hash) { tip = "验证成功！"; console.log("==");}
-        this.setState({ resume2hash: hash, resume2Rhash: bchash,tip2:tip});
+        const result = JSON.parse(resume.result.result);
+        const resumeHash = result.resumeHash;
+        if (resumeHash == hash) { tip = "验证成功！"; console.log("==");}
+        this.setState({ resume2hash: hash, resume2Rhash: resumeHash,tip2:tip});
     }
 
     render() {

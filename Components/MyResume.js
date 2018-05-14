@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var React = require("react");
+var Nebulas = require("../Nebulas");
 var react_bootstrap_1 = require("react-bootstrap");
 var MyResume = /** @class */ (function (_super) {
     tslib_1.__extends(MyResume, _super);
@@ -14,17 +15,23 @@ var MyResume = /** @class */ (function (_super) {
     }
     MyResume.prototype.createResume = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var jstr, curUser, Args;
+            var jstr, curUser, Args, args;
             return tslib_1.__generator(this, function (_a) {
-                jstr = JSON.stringify(this.state.resume);
-                localStorage.setItem("myResume", jstr);
-                curUser = localStorage.getItem("HCAccount");
-                Args = [curUser, this.state.resume.name, jstr];
-                //await Hyperchain.InvokeContract(Hyperchain.FormData(Args), "invoke")
-                localStorage.setItem("myResumeData", JSON.stringify(Args));
-                localStorage.setItem("myResumeState", "wait");
-                document.location.href = "/myresume";
-                return [2 /*return*/];
+                switch (_a.label) {
+                    case 0:
+                        jstr = JSON.stringify(this.state.resume);
+                        localStorage.setItem("myResume", jstr);
+                        curUser = localStorage.getItem("HCAccount");
+                        Args = [curUser, this.state.resume.name, jstr];
+                        return [4 /*yield*/, Nebulas.addResume(Nebulas.formData(Args))];
+                    case 1:
+                        args = _a.sent();
+                        //await Nebulas.queryResume("vayne tian");
+                        localStorage.setItem("myResumeData", JSON.stringify(Nebulas.formData(Args)));
+                        localStorage.setItem("myResumeState", "wait");
+                        document.location.href = "/myresume";
+                        return [2 /*return*/];
+                }
             });
         });
     };
@@ -98,7 +105,11 @@ var MyResume = /** @class */ (function (_super) {
                 tip = "审核中";
                 progress = React.createElement(react_bootstrap_1.ProgressBar, { now: 50 });
             }
-            var data = JSON.parse(localStorage.getItem("myResume"));
+            var Args = JSON.parse(localStorage.getItem("myResumeData"));
+            console.log(Args);
+            var nameHash = Args[1];
+            var address = Args[0];
+            var data = JSON.parse(Args[2]);
             return React.createElement("div", { style: {
                     display: "flex", flexDirection: "column"
                 } },
@@ -111,6 +122,12 @@ var MyResume = /** @class */ (function (_super) {
                         React.createElement("tr", null,
                             React.createElement("td", null, "\u59D3\u540D"),
                             React.createElement("td", null, data.name)),
+                        React.createElement("tr", null,
+                            React.createElement("td", null, "\u59D3\u540D\u54C8\u5E0C"),
+                            React.createElement("td", null, nameHash)),
+                        React.createElement("tr", null,
+                            React.createElement("td", null, "\u5730\u5740"),
+                            React.createElement("td", null, address)),
                         React.createElement("tr", null,
                             React.createElement("td", null, "\u5E74\u9F84"),
                             React.createElement("td", null, data.age)),

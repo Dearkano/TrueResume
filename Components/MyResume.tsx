@@ -1,5 +1,6 @@
 ﻿import * as React from "react";
 import * as Hyperchain from "../Hyperchain"
+import * as Nebulas from "../Nebulas"
 import { Table, Button, ProgressBar } from 'react-bootstrap';
 interface Resume {
     name: string,
@@ -21,7 +22,9 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
         const curUser = localStorage.getItem("HCAccount");
         let Args: string[] = [curUser, this.state.resume.name, jstr];
         //await Hyperchain.InvokeContract(Hyperchain.FormData(Args), "invoke")
-        localStorage.setItem("myResumeData", JSON.stringify(Args));
+        const args = await Nebulas.addResume(Nebulas.formData(Args));
+        //await Nebulas.queryResume("vayne tian");
+        localStorage.setItem("myResumeData", JSON.stringify(Nebulas.formData(Args)));
         localStorage.setItem("myResumeState", "wait");
         document.location.href = "/myresume";
     }
@@ -100,8 +103,12 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
                 tip = "审核中";
                 progress = <ProgressBar now={50} />;
             }
-
-            const data = JSON.parse(localStorage.getItem("myResume"));
+            
+            const Args = JSON.parse(localStorage.getItem("myResumeData"));
+            console.log(Args);
+            const nameHash = Args[1];
+            const address = Args[0];
+            const data = JSON.parse(Args[2]);
             return <div style={{
                 display: "flex", flexDirection: "column"
             }}>
@@ -116,6 +123,14 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
                         <tr>
                             <td>姓名</td>
                             <td>{data.name}</td>
+                        </tr>
+                        <tr>
+                            <td>姓名哈希</td>
+                            <td>{nameHash}</td>
+                        </tr>
+                        <tr>
+                            <td>地址</td>
+                            <td>{address}</td>
                         </tr>
                         <tr>
                             <td>年龄</td>

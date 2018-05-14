@@ -16,6 +16,7 @@ import { LogOut } from "./Components/LogOut";
 import { MyResume } from "./Components/MyResume";
 import { Veryify } from "./Components/Veryify";
 import { UserCenter } from "./Components/UserCenter";
+import { NebulasTest } from "./Components/NebulasTest";
 export class App extends React.Component<{}, {}>{
     render() {
         return <Router>
@@ -28,6 +29,7 @@ export class App extends React.Component<{}, {}>{
                 <Route exact path="/myresume" component={MyResume} />
                 <Route exact path="/verify" component={Veryify} />
                 <Route exact path="/usercenter" component={UserCenter} />
+                <Route exact path="/nebulas" component={NebulasTest} />
                 <Footer />
             </div>
             </Router>

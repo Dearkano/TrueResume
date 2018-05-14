@@ -1,5 +1,6 @@
 ﻿import * as React from "react";
 import * as Hyperchain from "../Hyperchain"
+import * as Nebulas from "../Nebulas"
 import { Button,Table} from 'react-bootstrap';
 import { win32 } from 'path';
 export class LogIn extends React.Component<{}, { name, password ,tip}>{
@@ -14,7 +15,7 @@ export class LogIn extends React.Component<{}, { name, password ,tip}>{
         this.setState({ password: e.target.value });
     }
     handleLogin() {
-        if (Hyperchain.Account(this.state.name, this.state.password)) {
+        if (Nebulas.login(this.state.name, this.state.password)) {
             localStorage.setItem("HCAccount", this.state.name);
             localStorage.setItem("HCPassword", this.state.password);
             this.setState({ tip: "登陆成功" })
@@ -46,27 +47,20 @@ export class LogIn extends React.Component<{}, { name, password ,tip}>{
                         <th>密码</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Vayne（已经创建过简历）</td>
-                        <td>vayne</td>
-                    </tr>
-                    <tr>
-                        <td>Mana（没有创建过简历，每次会被删）</td>
-                        <td>mana</td>
-                        </tr>
+                    <tbody>
                         <tr>
-                            <td>Myrcella（没有创建过简历,不会被删）</td>
-                            <td >myrcella</td>
+                            <td>user</td>
+                            <td>123456</td>
                         </tr>
                     <tr>
-                        <td>HR（查询者）</td>
-                        <td >hr</td>
+                            <td>n1QopLp3CrV9xZJtC7eF64kxDVhP3NTHruw</td>
+                        <td>123456</td>
                     </tr>
                     <tr>
-                        <td>CA（管理员）</td>
-                        <td >ca</td>
-                    </tr>
+                            <td>n1Y7qZ842hb3XhoqfzpMwyKWYNXYtixddPm</td>
+                        <td>123456789</td>
+                        </tr>          
+                        
                 </tbody>
                 </Table>
                 </div>

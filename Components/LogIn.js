@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var React = require("react");
-var Hyperchain = require("../Hyperchain");
+var Nebulas = require("../Nebulas");
 var react_bootstrap_1 = require("react-bootstrap");
 var LogIn = /** @class */ (function (_super) {
     tslib_1.__extends(LogIn, _super);
@@ -18,7 +18,7 @@ var LogIn = /** @class */ (function (_super) {
         this.setState({ password: e.target.value });
     };
     LogIn.prototype.handleLogin = function () {
-        if (Hyperchain.Account(this.state.name, this.state.password)) {
+        if (Nebulas.login(this.state.name, this.state.password)) {
             localStorage.setItem("HCAccount", this.state.name);
             localStorage.setItem("HCPassword", this.state.password);
             this.setState({ tip: "登陆成功" });
@@ -51,20 +51,14 @@ var LogIn = /** @class */ (function (_super) {
                             React.createElement("th", null, "\u5BC6\u7801"))),
                     React.createElement("tbody", null,
                         React.createElement("tr", null,
-                            React.createElement("td", null, "Vayne\uFF08\u5DF2\u7ECF\u521B\u5EFA\u8FC7\u7B80\u5386\uFF09"),
-                            React.createElement("td", null, "vayne")),
+                            React.createElement("td", null, "n1LkDi2gGMqPrjYcczUiweyP4RxTB6Go1qS"),
+                            React.createElement("td", null, "123456")),
                         React.createElement("tr", null,
-                            React.createElement("td", null, "Mana\uFF08\u6CA1\u6709\u521B\u5EFA\u8FC7\u7B80\u5386\uFF0C\u6BCF\u6B21\u4F1A\u88AB\u5220\uFF09"),
-                            React.createElement("td", null, "mana")),
+                            React.createElement("td", null, "n1H4MYms9F55ehcvygwWE71J8tJC4CRr2so"),
+                            React.createElement("td", null, "abcdef")),
                         React.createElement("tr", null,
-                            React.createElement("td", null, "Myrcella\uFF08\u6CA1\u6709\u521B\u5EFA\u8FC7\u7B80\u5386,\u4E0D\u4F1A\u88AB\u5220\uFF09"),
-                            React.createElement("td", null, "myrcella")),
-                        React.createElement("tr", null,
-                            React.createElement("td", null, "HR\uFF08\u67E5\u8BE2\u8005\uFF09"),
-                            React.createElement("td", null, "hr")),
-                        React.createElement("tr", null,
-                            React.createElement("td", null, "CA\uFF08\u7BA1\u7406\u5458\uFF09"),
-                            React.createElement("td", null, "ca"))))));
+                            React.createElement("td", null, "n1bz1jRkWC37Ka2xZY3zQhhLn3C5PfYpG9p"),
+                            React.createElement("td", null, "123456"))))));
     };
     return LogIn;
 }(React.Component));

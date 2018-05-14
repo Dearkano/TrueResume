@@ -2,9 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var React = require("react");
-var Hyperchain = require("../Hyperchain");
 var react_bootstrap_1 = require("react-bootstrap");
-var Utility = require("../Utility");
+var Nebulas = require("../Nebulas");
 var md5 = require("md5");
 var Veryify = /** @class */ (function (_super) {
     tslib_1.__extends(Veryify, _super);
@@ -32,7 +31,7 @@ var Veryify = /** @class */ (function (_super) {
     };
     Veryify.prototype.veryify1 = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var jstr, hash, curUser, name, data, Ret, r, buf, s, bchash1, tip, bchash;
+            var jstr, hash, curUser, nameHash, resume, tip, resumeHash;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -40,20 +39,16 @@ var Veryify = /** @class */ (function (_super) {
                         console.log("jstr=" + jstr);
                         hash = md5(jstr);
                         curUser = localStorage.getItem("HCAccount");
-                        name = this.state.resumes[0].name;
-                        return [4 /*yield*/, Hyperchain.InvokeContract([curUser, name], "query")];
+                        nameHash = md5(this.state.resumes[0].name);
+                        return [4 /*yield*/, Nebulas.queryResume(nameHash)];
                     case 1:
-                        data = _a.sent();
-                        Ret = data.Ret;
-                        r = Ret.substring(2);
-                        buf = new Buffer(r, 'hex');
-                        s = buf.toString();
-                        bchash1 = Utility.trim(s);
+                        resume = _a.sent();
+                        console.log(resume);
                         tip = "验证失败！";
-                        bchash = bchash1.replace(-2, "");
-                        if (bchash == hash)
+                        resumeHash = resume.resumeHash;
+                        if (resumeHash == hash)
                             tip = "验证成功！";
-                        this.setState({ resume1hash: hash, resume1Rhash: bchash, tip1: tip });
+                        this.setState({ resume1hash: hash, resume1Rhash: resumeHash, tip1: tip });
                         return [2 /*return*/];
                 }
             });
@@ -61,36 +56,27 @@ var Veryify = /** @class */ (function (_super) {
     };
     Veryify.prototype.veryify2 = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var jstr, hash, curUser, name, data, Ret, r, buf, s, bchash1, tip, bchash;
+            var jstr, hash, curUser, nameHash, resume, tip, result, resumeHash;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         jstr = JSON.stringify(this.state.resumes[1]);
-                        console.log(jstr);
                         hash = md5(jstr);
                         curUser = localStorage.getItem("HCAccount");
-                        name = this.state.resumes[1].name;
-                        return [4 /*yield*/, Hyperchain.InvokeContract([curUser, name], "query")];
+                        nameHash = md5(this.state.resumes[1].name);
+                        console.log("jstr = " + jstr);
+                        console.log("verify hash= " + hash);
+                        return [4 /*yield*/, Nebulas.queryResume(nameHash)];
                     case 1:
-                        data = _a.sent();
-                        Ret = data.Ret;
-                        r = Ret.substring(2);
-                        buf = new Buffer(r, 'hex');
-                        s = buf.toString();
-                        bchash1 = Utility.trim(s);
+                        resume = _a.sent();
                         tip = "验证失败！";
-                        bchash = bchash1.replace(-2, "");
-                        console.log("----");
-                        console.log(hash.length);
-                        console.log(bchash.length);
-                        console.log(bchash.codePointAt(33));
-                        console.log(bchash.codePointAt(39));
-                        console.log(bchash.codePointAt(47));
-                        if (bchash == hash) {
+                        result = JSON.parse(resume.result.result);
+                        resumeHash = result.resumeHash;
+                        if (resumeHash == hash) {
                             tip = "验证成功！";
                             console.log("==");
                         }
-                        this.setState({ resume2hash: hash, resume2Rhash: bchash, tip2: tip });
+                        this.setState({ resume2hash: hash, resume2Rhash: resumeHash, tip2: tip });
                         return [2 /*return*/];
                 }
             });
