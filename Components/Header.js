@@ -16,7 +16,7 @@ var Header = /** @class */ (function (_super) {
             name = localStorage.getItem("HCAccount");
         }
         var userCenter = null;
-        if (localStorage.getItem("HCAccount") && localStorage.getItem("HCAccount") == "CA") {
+        if (localStorage.getItem("HCAccount") && localStorage.getItem("AccountSecret") != "") {
             userCenter = React.createElement(react_bootstrap_1.NavItem, { eventKey: 1, href: "/usercenter" }, "\u4E2A\u4EBA\u4E2D\u5FC3");
         }
         return React.createElement("div", null,

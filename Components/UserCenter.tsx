@@ -1,12 +1,15 @@
 ﻿import * as React from "react";
 import * as Hyperchain from "../Hyperchain"
+import * as Nebulas from "../Nebulas"
 import { Table, Button } from 'react-bootstrap';
 export class UserCenter extends React.Component<{}, {}>{
     async accept() {
-        const Args = localStorage.getItem("myResumeData");
-        await Hyperchain.InvokeContract(Hyperchain.FormData(JSON.parse(Args)), "invoke");
+        const Args = JSON.parse(localStorage.getItem("myResumeData"));
+        Args[0] = localStorage.getItem("HCAccount");
+       // await Hyperchain.InvokeContract(Hyperchain.FormData(JSON.parse(Args)), "invoke");
+        const args = await Nebulas.addResume(Args);
         localStorage.setItem("myResumeState", "accept");
-        localStorage.removeItem("myResumeData");
+        //localStorage.removeItem("myResumeData");
         document.location.href = "/usercenter";
     }
     refuse() {
@@ -15,7 +18,7 @@ export class UserCenter extends React.Component<{}, {}>{
         document.location.href = "/usercenter";
     }
     render() {
-        if (localStorage.getItem("HCAccount") != "CA") {
+        if (localStorage.getItem("AccountSecret") == "") {
             return <div>您没有权限</div>
         }
         let Args = null;

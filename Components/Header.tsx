@@ -9,7 +9,7 @@ export class Header extends React.Component {
             name = localStorage.getItem("HCAccount");
         }
         let userCenter = null;
-        if (localStorage.getItem("HCAccount") && localStorage.getItem("HCAccount") == "CA") {
+        if (localStorage.getItem("HCAccount") && localStorage.getItem("AccountSecret") != "") {
             userCenter = <NavItem eventKey={1} href="/usercenter">
                 个人中心
       </NavItem>;

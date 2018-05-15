@@ -54,7 +54,7 @@ export class LogIn extends React.Component<{}, { name, password ,tip}>{
                         </tr>
                     <tr>
                             <td>n1QopLp3CrV9xZJtC7eF64kxDVhP3NTHruw</td>
-                        <td>123456</td>
+                        <td>zjutzj3160</td>
                     </tr>
                     <tr>
                             <td>n1Y7qZ842hb3XhoqfzpMwyKWYNXYtixddPm</td>

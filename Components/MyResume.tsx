@@ -22,7 +22,7 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
         const curUser = localStorage.getItem("HCAccount");
         let Args: string[] = [curUser, this.state.resume.name, jstr];
         //await Hyperchain.InvokeContract(Hyperchain.FormData(Args), "invoke")
-        const args = await Nebulas.addResume(Nebulas.formData(Args));
+        //const args = await Nebulas.addResume(Nebulas.formData(Args));
         //await Nebulas.queryResume("vayne tian");
         localStorage.setItem("myResumeData", JSON.stringify(Nebulas.formData(Args)));
         localStorage.setItem("myResumeState", "wait");
@@ -52,6 +52,11 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
         var t = this.state.resume;
         t.patent = e.target.value;
         this.setState({ resume: t });
+    }
+    nextResume() {
+        localStorage.removeItem("myResume");
+        localStorage.removeItem("myResumeData");
+        document.location.href = "/myresume";
     }
     render() {
         if (!localStorage.getItem("HCAccount")) {
@@ -151,7 +156,8 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
                     </tbody>
                 </Table>
                 {progress}
-                <div className="row" style={{ justifyContent: "center", marginTop: "15px", fontSize:"30px" }}>{tip}</div>
+                <div className="row" style={{ justifyContent: "center", marginTop: "15px", fontSize: "30px" }}>{tip}</div>
+                <Button bsStyle="info" onClick={this.nextResume.bind(this)}>申请下一份简历</Button>
             </div>;
         }
 

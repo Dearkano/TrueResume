@@ -15,23 +15,19 @@ var MyResume = /** @class */ (function (_super) {
     }
     MyResume.prototype.createResume = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var jstr, curUser, Args, args;
+            var jstr, curUser, Args;
             return tslib_1.__generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        jstr = JSON.stringify(this.state.resume);
-                        localStorage.setItem("myResume", jstr);
-                        curUser = localStorage.getItem("HCAccount");
-                        Args = [curUser, this.state.resume.name, jstr];
-                        return [4 /*yield*/, Nebulas.addResume(Nebulas.formData(Args))];
-                    case 1:
-                        args = _a.sent();
-                        //await Nebulas.queryResume("vayne tian");
-                        localStorage.setItem("myResumeData", JSON.stringify(Nebulas.formData(Args)));
-                        localStorage.setItem("myResumeState", "wait");
-                        document.location.href = "/myresume";
-                        return [2 /*return*/];
-                }
+                jstr = JSON.stringify(this.state.resume);
+                localStorage.setItem("myResume", jstr);
+                curUser = localStorage.getItem("HCAccount");
+                Args = [curUser, this.state.resume.name, jstr];
+                //await Hyperchain.InvokeContract(Hyperchain.FormData(Args), "invoke")
+                //const args = await Nebulas.addResume(Nebulas.formData(Args));
+                //await Nebulas.queryResume("vayne tian");
+                localStorage.setItem("myResumeData", JSON.stringify(Nebulas.formData(Args)));
+                localStorage.setItem("myResumeState", "wait");
+                document.location.href = "/myresume";
+                return [2 /*return*/];
             });
         });
     };
@@ -59,6 +55,10 @@ var MyResume = /** @class */ (function (_super) {
         var t = this.state.resume;
         t.patent = e.target.value;
         this.setState({ resume: t });
+    };
+    MyResume.prototype.nextResume = function () {
+        localStorage.removeItem("myResume");
+        localStorage.removeItem("myResumeData");
     };
     MyResume.prototype.render = function () {
         if (!localStorage.getItem("HCAccount")) {
@@ -141,7 +141,8 @@ var MyResume = /** @class */ (function (_super) {
                             React.createElement("td", null, "\u4E13\u5229\u6570\u91CF"),
                             React.createElement("td", null, data.patent)))),
                 progress,
-                React.createElement("div", { className: "row", style: { justifyContent: "center", marginTop: "15px", fontSize: "30px" } }, tip));
+                React.createElement("div", { className: "row", style: { justifyContent: "center", marginTop: "15px", fontSize: "30px" } }, tip),
+                React.createElement(react_bootstrap_1.Button, { bsStyle: "info", onClick: this.nextResume.bind(this) }, "\u7533\u8BF7\u4E0B\u4E00\u4EFD\u7B80\u5386"));
         }
     };
     return MyResume;

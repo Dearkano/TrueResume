@@ -10,6 +10,7 @@ var LogOut = /** @class */ (function (_super) {
     LogOut.prototype.componentDidMount = function () {
         localStorage.removeItem("HCAccount");
         localStorage.removeItem("HCPassword");
+        localStorage.removeItem("AccountSecret");
         document.location.href = "/";
     };
     LogOut.prototype.render = function () {

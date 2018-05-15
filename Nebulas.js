@@ -65,7 +65,7 @@ function addResume(args) {
                             gasLimit: "2000000",
                             contract: { "function": "save", "args": JSON.stringify(data) }
                         },
-                        passphrase: "Mac-intosh~963"
+                        passphrase: localStorage.getItem("AccountSecret")
                     });
                     return [4 /*yield*/, fetch(url, { method: "POST", headers: headers, body: body })];
                 case 2:
@@ -75,7 +75,7 @@ function addResume(args) {
                     rs = _a.sent();
                     console.log(rs.result);
                     abi = rs.result.data;
-                    _url = "https://mainnet.nebulas.io/user/rawtransaction";
+                    _url = "https://mainnet.nebulas.io/v1/user/rawtransaction";
                     body1 = JSON.stringify({ data: abi });
                     return [4 /*yield*/, fetch(_url, { method: "POST", headers: headers, body: body1 })];
                 case 4:
@@ -121,13 +121,14 @@ function queryResume(nameHash) {
 exports.queryResume = queryResume;
 function login(account, password) {
     var users = [
-        { account: "n1LkDi2gGMqPrjYcczUiweyP4RxTB6Go1qS", password: "123456" },
-        { account: "n1H4MYms9F55ehcvygwWE71J8tJC4CRr2so", password: "abcdef" },
-        { account: "n1bz1jRkWC37Ka2xZY3zQhhLn3C5PfYpG9p", password: "123456" }
+        { account: "n1QopLp3CrV9xZJtC7eF64kxDVhP3NTHruw", password: "zjutzj3160", secret: "zjutzj3160" },
+        { account: "n1Y7qZ842hb3XhoqfzpMwyKWYNXYtixddPm", password: "123456789", secret: "123456789" },
+        { account: "user", password: "123456", secret: "" }
     ];
     for (var i in users) {
         if (users[i].account == account && users[i].password == password) {
             localStorage.setItem("HCAccount", users[i].account);
+            localStorage.setItem("AccountSecret", users[i].secret);
             return true;
         }
     }

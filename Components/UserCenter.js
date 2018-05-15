@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var React = require("react");
-var Hyperchain = require("../Hyperchain");
+var Nebulas = require("../Nebulas");
 var react_bootstrap_1 = require("react-bootstrap");
 var UserCenter = /** @class */ (function (_super) {
     tslib_1.__extends(UserCenter, _super);
@@ -11,16 +11,17 @@ var UserCenter = /** @class */ (function (_super) {
     }
     UserCenter.prototype.accept = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var Args;
+            var Args, args;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        Args = localStorage.getItem("myResumeData");
-                        return [4 /*yield*/, Hyperchain.InvokeContract(Hyperchain.FormData(JSON.parse(Args)), "invoke")];
+                        Args = JSON.parse(localStorage.getItem("myResumeData"));
+                        Args[0] = localStorage.getItem("HCAccount");
+                        return [4 /*yield*/, Nebulas.addResume(Args)];
                     case 1:
-                        _a.sent();
+                        args = _a.sent();
                         localStorage.setItem("myResumeState", "accept");
-                        localStorage.removeItem("myResumeData");
+                        //localStorage.removeItem("myResumeData");
                         document.location.href = "/usercenter";
                         return [2 /*return*/];
                 }
@@ -33,7 +34,7 @@ var UserCenter = /** @class */ (function (_super) {
         document.location.href = "/usercenter";
     };
     UserCenter.prototype.render = function () {
-        if (localStorage.getItem("HCAccount") != "CA") {
+        if (localStorage.getItem("AccountSecret") == "") {
             return React.createElement("div", null, "\u60A8\u6CA1\u6709\u6743\u9650");
         }
         var Args = null;
