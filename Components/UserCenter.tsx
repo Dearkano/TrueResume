@@ -23,7 +23,9 @@ export class UserCenter extends React.Component<{}, {}>{
         }
         let Args = null;
         let UI = <div className="column"><h1>当前没有需要审核的简历</h1></div>;
-        if (localStorage.getItem("myResumeData")) {
+        let state = localStorage.getItem("myResumeState");
+        console.log(state);
+        if (state=="wait") {
             Args = localStorage.getItem("myResumeData");
             const resume = JSON.parse(JSON.parse(Args)[2]);
             UI = <div className="column" style={{ alignItems:"center" }}> <Table striped bordered condensed hover>

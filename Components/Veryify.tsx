@@ -202,6 +202,7 @@ export class Veryify extends React.Component<{}, {resume,resumes,done,resume1has
                 <div className="login-form">
                     <p>姓名</p><input name="username" type="text" id="loginName" onChange={this.handleENameChange.bind(this)} value={this.state.name} autoComplete="username" /><Button bsStyle="info" style={{ marginLeft:"1rem" }} onClick={this.verify.bind(this)}>查询</Button>
                 </div>
+                <div className="row">查询哈希：{this.state.verificationResult}</div>
             </div>
             <h1>Step 2</h1>
             <div className="column">
@@ -226,7 +227,7 @@ export class Veryify extends React.Component<{}, {resume,resumes,done,resume1has
                     <input type="text" value={this.state.resume.patent} onChange={this.handlePatentChange.bind(this)} />
                 </div>
 
-                <Button onClick={this.verifyResume.bind(this)}>验证简历</Button>
+                <Button onClick={this.verifyResume.bind(this)} style={{ marginBottom:"1rem" }}>验证简历</Button>
                 <Table striped bordered condensed hover>
                     <tbody>
                         <tr>
@@ -242,7 +243,7 @@ export class Veryify extends React.Component<{}, {resume,resumes,done,resume1has
                 <h3>{this.state.tip3}</h3>
             </div>
 
-            <div className="row">{this.state.verificationResult}</div>
+        
             <h1>Step 3</h1>
             <Button bsStyle="info" style={{width:"400px"}}onClick={this.getResume.bind(this)}>获取简历</Button>
             {res}

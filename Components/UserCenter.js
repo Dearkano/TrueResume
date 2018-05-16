@@ -40,7 +40,9 @@ var UserCenter = /** @class */ (function (_super) {
         var Args = null;
         var UI = React.createElement("div", { className: "column" },
             React.createElement("h1", null, "\u5F53\u524D\u6CA1\u6709\u9700\u8981\u5BA1\u6838\u7684\u7B80\u5386"));
-        if (localStorage.getItem("myResumeData")) {
+        var state = localStorage.getItem("myResumeState");
+        console.log(state);
+        if (state == "wait") {
             Args = localStorage.getItem("myResumeData");
             var resume = JSON.parse(JSON.parse(Args)[2]);
             UI = React.createElement("div", { className: "column", style: { alignItems: "center" } },
