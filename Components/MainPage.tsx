@@ -17,12 +17,10 @@ export class MainPage extends React.Component<{}, { key }> {
 
     render() {
         return <div className="mainpage-body">
-            <img src="/static/logo_white.png" className="whitelogo" />
-            <h2 className="developer">趣链开发者平台</h2>
-            <img src="./static/logo.png" className="logo" />
+            <img src="./static/nebulas.png" className="logo" />
             <div style={{ marginTop: "-20px" }}>
                 <img src="/static/blockchain.jpg" width="1515px" />
-                <h1 className="title">基于联盟链的简历验证系统</h1>
+                <h1 className="title">基于星云链的简历验证系统</h1>
                 <h2 className="title1">致力于在去中心化的环境下为企业提供一个安全可信的简历验证解决方案
 </h2>
             </div>

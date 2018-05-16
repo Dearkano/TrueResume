@@ -31,7 +31,7 @@ var Veryify = /** @class */ (function (_super) {
     };
     Veryify.prototype.veryify1 = function () {
         return tslib_1.__awaiter(this, void 0, void 0, function () {
-            var jstr, hash, curUser, nameHash, resume, tip, resumeHash;
+            var jstr, hash, curUser, nameHash, resume, tip, result, resumeHash;
             return tslib_1.__generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -45,7 +45,8 @@ var Veryify = /** @class */ (function (_super) {
                         resume = _a.sent();
                         console.log(resume);
                         tip = "验证失败！";
-                        resumeHash = resume.resumeHash;
+                        result = JSON.parse(resume.result.result);
+                        resumeHash = result.resumeHash;
                         if (resumeHash == hash)
                             tip = "验证成功！";
                         this.setState({ resume1hash: hash, resume1Rhash: resumeHash, tip1: tip });

@@ -59,6 +59,7 @@ var MyResume = /** @class */ (function (_super) {
     MyResume.prototype.nextResume = function () {
         localStorage.removeItem("myResume");
         localStorage.removeItem("myResumeData");
+        document.location.href = "/myresume";
     };
     MyResume.prototype.render = function () {
         if (!localStorage.getItem("HCAccount")) {

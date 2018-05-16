@@ -18,12 +18,10 @@ var MainPage = /** @class */ (function (_super) {
     };
     MainPage.prototype.render = function () {
         return React.createElement("div", { className: "mainpage-body" },
-            React.createElement("img", { src: "/static/logo_white.png", className: "whitelogo" }),
-            React.createElement("h2", { className: "developer" }, "\u8DA3\u94FE\u5F00\u53D1\u8005\u5E73\u53F0"),
-            React.createElement("img", { src: "./static/logo.png", className: "logo" }),
+            React.createElement("img", { src: "./static/nebulas.png", className: "logo" }),
             React.createElement("div", { style: { marginTop: "-20px" } },
                 React.createElement("img", { src: "/static/blockchain.jpg", width: "1515px" }),
-                React.createElement("h1", { className: "title" }, "\u57FA\u4E8E\u8054\u76DF\u94FE\u7684\u7B80\u5386\u9A8C\u8BC1\u7CFB\u7EDF"),
+                React.createElement("h1", { className: "title" }, "\u57FA\u4E8E\u661F\u4E91\u94FE\u7684\u7B80\u5386\u9A8C\u8BC1\u7CFB\u7EDF"),
                 React.createElement("h2", { className: "title1" }, "\u81F4\u529B\u4E8E\u5728\u53BB\u4E2D\u5FC3\u5316\u7684\u73AF\u5883\u4E0B\u4E3A\u4F01\u4E1A\u63D0\u4F9B\u4E00\u4E2A\u5B89\u5168\u53EF\u4FE1\u7684\u7B80\u5386\u9A8C\u8BC1\u89E3\u51B3\u65B9\u6848")),
             React.createElement("div", { style: { width: "900px", marginTop: "230px" } },
                 React.createElement(react_bootstrap_1.Tabs, { activeKey: this.state.key, onSelect: this.handleSelect, id: "controlled-tab-example" },

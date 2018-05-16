@@ -28,8 +28,7 @@ var Header = /** @class */ (function (_super) {
                 React.createElement(react_bootstrap_1.Navbar.Collapse, null,
                     React.createElement(react_bootstrap_1.Nav, null,
                         React.createElement(react_bootstrap_1.NavItem, { eventKey: 1, href: "/myresume" }, "\u6211\u7684\u7B80\u5386"),
-                        React.createElement(react_bootstrap_1.NavItem, { eventKey: 2, href: "/verify" }, "\u9A8C\u8BC1\u7B80\u5386"),
-                        React.createElement(react_bootstrap_1.NavItem, { eventKey: 3, href: "/apitest" }, "API")),
+                        React.createElement(react_bootstrap_1.NavItem, { eventKey: 2, href: "/verify" }, "\u9A8C\u8BC1\u7B80\u5386")),
                     React.createElement(react_bootstrap_1.Nav, { pullRight: true },
                         userCenter,
                         React.createElement(react_bootstrap_1.NavItem, { eventKey: 2, href: isLogin ? "/logout" : "/login" }, isLogin ? name + "/注销" : "登录")))));

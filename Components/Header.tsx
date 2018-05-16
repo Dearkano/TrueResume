@@ -30,9 +30,7 @@ export class Header extends React.Component {
                     <NavItem eventKey={2} href="/verify">
                         验证简历
       </NavItem>
-                    <NavItem eventKey={3} href="/apitest">
-                        API
-      </NavItem>
+                  
                 </Nav>
               
                 <Nav pullRight>
