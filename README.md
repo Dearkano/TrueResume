@@ -24,7 +24,7 @@ resume verification to increase HR's efficiency.
 
 ## step2
 * 1.在右上角注销
-* 2.使用下面两个管理员账号（nebulas地址）登陆
+* 2.使用下面两个管理员账号（nebulas地址，预先存入了NAS用于gas消耗）登陆
 * 3.点击右上角“个人中心”
 * 4.可以看到刚才user提交的简历，点击“通过”，这时会对公链进行上链操作
 * 5.由于DPOS的共识，等待15s左右
