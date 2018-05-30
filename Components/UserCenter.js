@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = require("tslib");
 var React = require("react");
 var Nebulas = require("../Nebulas");
+var $ = require("jquery");
 var react_bootstrap_1 = require("react-bootstrap");
 var UserCenter = /** @class */ (function (_super) {
     tslib_1.__extends(UserCenter, _super);
@@ -22,7 +23,9 @@ var UserCenter = /** @class */ (function (_super) {
                         args = _a.sent();
                         localStorage.setItem("myResumeState", "accept");
                         //localStorage.removeItem("myResumeData");
-                        document.location.href = "/usercenter";
+                        $("#acceptR").attr("disabled", true);
+                        $("#rejectR").attr("disabled", true);
+                        $("#txtip").text("交易已发送，验证交易完成后，您可以去验证简历");
                         return [2 /*return*/];
                 }
             });
@@ -34,7 +37,7 @@ var UserCenter = /** @class */ (function (_super) {
         document.location.href = "/usercenter";
     };
     UserCenter.prototype.render = function () {
-        if (localStorage.getItem("AccountSecret") == "") {
+        if (localStorage.getItem("HCAccount") != "manager") {
             return React.createElement("div", null, "\u60A8\u6CA1\u6709\u6743\u9650");
         }
         var Args = null;
@@ -68,8 +71,9 @@ var UserCenter = /** @class */ (function (_super) {
                         React.createElement("tr", null,
                             React.createElement("td", null, "\u4E13\u5229\u6570\u91CF"),
                             React.createElement("td", null, resume.patent)))),
-                React.createElement(react_bootstrap_1.Button, { style: { marginTop: "25px", width: "200px" }, bsStyle: "success", onClick: this.accept.bind(this) }, "\u901A\u8FC7"),
-                React.createElement(react_bootstrap_1.Button, { style: { marginTop: "25px", width: "200px" }, bsStyle: "danger", onClick: this.refuse.bind(this) }, "\u62D2\u7EDD"));
+                React.createElement(react_bootstrap_1.Button, { style: { marginTop: "25px", width: "200px" }, bsStyle: "success", id: "acceptR", onClick: this.accept.bind(this) }, "\u901A\u8FC7"),
+                React.createElement(react_bootstrap_1.Button, { style: { marginTop: "25px", width: "200px" }, bsStyle: "danger", id: "rejectR", onClick: this.refuse.bind(this) }, "\u62D2\u7EDD"),
+                React.createElement("div", { id: "txtip" }));
         }
         return React.createElement("div", null, UI);
     };

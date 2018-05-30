@@ -1,6 +1,7 @@
 ﻿import * as React from "react";
 import * as Hyperchain from "../Hyperchain"
-import * as Nebulas from "../Nebulas"
+import * as Nebulas from "../Nebulas";
+import * as $ from 'jquery';
 import { Table, Button } from 'react-bootstrap';
 export class UserCenter extends React.Component<{}, {}>{
     async accept() {
@@ -10,7 +11,9 @@ export class UserCenter extends React.Component<{}, {}>{
         const args = await Nebulas.addResume(Args);
         localStorage.setItem("myResumeState", "accept");
         //localStorage.removeItem("myResumeData");
-        document.location.href = "/usercenter";
+        $("#acceptR").attr("disabled", true);   
+        $("#rejectR").attr("disabled", true);  
+        $("#txtip").text("交易已发送，验证交易完成后，您可以去验证简历");
     }
     refuse() {
         localStorage.setItem("myResumeState", "refuse");
@@ -18,7 +21,7 @@ export class UserCenter extends React.Component<{}, {}>{
         document.location.href = "/usercenter";
     }
     render() {
-        if (localStorage.getItem("AccountSecret") == "") {
+        if (localStorage.getItem("HCAccount") != "manager") {
             return <div>您没有权限</div>
         }
         let Args = null;
@@ -58,8 +61,9 @@ export class UserCenter extends React.Component<{}, {}>{
                     </tr>                    
                 </tbody>
             </Table>
-                <Button style={{ marginTop: "25px", width: "200px" }}  bsStyle="success" onClick={this.accept.bind(this)}>通过</Button>
-                <Button style={{ marginTop:"25px",width:"200px" }} bsStyle="danger" onClick={this.refuse.bind(this)}>拒绝</Button>
+                <Button style={{ marginTop: "25px", width: "200px" }}  bsStyle="success" id="acceptR" onClick={this.accept.bind(this)}>通过</Button>
+                <Button style={{ marginTop: "25px", width: "200px" }} bsStyle="danger" id="rejectR" onClick={this.refuse.bind(this)}>拒绝</Button>
+                <div id="txtip"></div>
                 </div>;
         }
         return <div>{UI}</div>;

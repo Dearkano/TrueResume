@@ -1,5 +1,6 @@
-﻿import { Tabs,Tab,Table } from 'react-bootstrap';
+﻿import { Tabs,Tab,Table,ListGroup,ListGroupItem } from 'react-bootstrap';
 import * as React from "react";
+import * as NebPay from "nebpay";
 export class MainPage extends React.Component<{}, { key }> {
     constructor(props, context) {
         super(props, context);
@@ -16,15 +17,30 @@ export class MainPage extends React.Component<{}, { key }> {
     }
 
     render() {
+        var nebPay = new NebPay;
+        console.log(nebPay);
+        console.log(nebPay.call);
         return <div className="mainpage-body">
             <img src="./static/nebulas.png" className="logo" />
             <div style={{ marginTop: "-20px" }}>
-                <img src="/static/blockchain.jpg" width="1515px" />
+                <img src="/static/blockchain.jpg" width="100%" />
                 <h1 className="title">基于星云链的简历验证系统</h1>
                 <h2 className="title1">致力于在去中心化的环境下为企业提供一个安全可信的简历验证解决方案
 </h2>
             </div>
-            <div style={{ width: "900px", marginTop:"230px" }}>
+            <div className="row" style={{width:"100%"}}>
+                <div style={{ marginTop: "23rem", marginLeft: "15rem", marginRight:"5rem",width:"40%"}}>
+                    <ListGroup>
+
+                        <ListGroupItem><a href="https://github.com/Dearkano/ResumeVerification">测试教程&Github地址: https://github.com/Dearkano/ResumeVerification </a></ListGroupItem>
+                        <ListGroupItem>本次webapp仅作为demo为保证不请求用户的私钥，使用主机上开发者个人申请的几个账号作为测试使用</ListGroupItem>
+                        <ListGroupItem>本系统属于个人开发原创，如有任何抄袭行为将予以追究</ListGroupItem>
+                        <ListGroupItem>开发者：Vayne Tian 浙江大学计算机学院InCAS实验室</ListGroupItem>
+
+                    </ListGroup>
+                    </div>
+
+            <div style={{ width: "500px", marginTop:"230px" }}>
             <Tabs
                 activeKey={this.state.key}
                 onSelect={this.handleSelect}
@@ -127,6 +143,7 @@ export class MainPage extends React.Component<{}, { key }> {
                     </Table>
         </Tab>
                 </Tabs>
+                </div>
                 </div>
         </div>;
     }

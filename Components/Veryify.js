@@ -91,9 +91,14 @@ var Veryify = /** @class */ (function (_super) {
                     case 0: return [4 /*yield*/, Nebulas.queryResume(md5(this.state.name))];
                     case 1:
                         resume = _a.sent();
-                        result = JSON.parse(resume.result.result);
-                        resumeHash = result.resumeHash;
-                        this.setState({ verificationResult: resumeHash });
+                        if (resume.result.result == "Error: No resume before.") {
+                            this.setState({ verificationResult: "没有查询到相关简历" });
+                        }
+                        else {
+                            result = JSON.parse(resume.result.result);
+                            resumeHash = result.resumeHash;
+                            this.setState({ verificationResult: resumeHash });
+                        }
                         return [2 /*return*/];
                 }
             });

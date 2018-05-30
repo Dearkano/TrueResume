@@ -10,9 +10,6 @@
     <None Remove="dist\**" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="wwwroot\static\main.js" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="App.tsx" />
     <None Remove="Components\APITest.tsx" />
     <None Remove="Components\Commit.tsx" />
@@ -28,15 +25,13 @@
     <None Remove="Hyperchain.tsx" />
     <None Remove="Nebulas.tsx" />
     <None Remove="Utility.ts" />
+    <None Remove="webpack.config.ts" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.3" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\static\main.js" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="App.tsx" />
@@ -54,6 +49,7 @@
     <TypeScriptCompile Include="Hyperchain.tsx" />
     <TypeScriptCompile Include="Nebulas.tsx" />
     <TypeScriptCompile Include="Utility.ts" />
+    <TypeScriptCompile Include="webpack.config.ts" />
   </ItemGroup>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="node &quot;$(ProjectDir)node_modules\webpack\bin\webpack.js&quot;&#xD;&#xA;" />

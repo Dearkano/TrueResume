@@ -52,13 +52,10 @@ var LogIn = /** @class */ (function (_super) {
                     React.createElement("tbody", null,
                         React.createElement("tr", null,
                             React.createElement("td", null, "user"),
-                            React.createElement("td", null, "123456")),
+                            React.createElement("td", null, "iamuser")),
                         React.createElement("tr", null,
-                            React.createElement("td", null, "n1QopLp3CrV9xZJtC7eF64kxDVhP3NTHruw"),
-                            React.createElement("td", null, "zjutzj3160")),
-                        React.createElement("tr", null,
-                            React.createElement("td", null, "n1Y7qZ842hb3XhoqfzpMwyKWYNXYtixddPm"),
-                            React.createElement("td", null, "123456789"))))));
+                            React.createElement("td", null, "manager"),
+                            React.createElement("td", null, "iammanager"))))));
     };
     return LogIn;
 }(React.Component));

@@ -8,6 +8,20 @@
 </head>
 <body>
     <div id="root"></div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/scripts/lib/jquery/jquery.min.js"></script>
     <script type='text/javascript' src="/static/main.js"></script>
+    <script>
+        'use strict';
+        window.addEventListener("load", function () {
+            let isExtensionExist = typeof (webExtensionWallet) !== "undefined";
+            if (!isExtensionExist) {
+                $("#root").empty();
+                $("#root").append('<div class="no-extension">Please use google chrome and install <a href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a> to use ResumeVerification</div>');
+            }
+
+        });
+    </script>
 </body>
 </html>

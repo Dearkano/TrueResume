@@ -1,14 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var CleanWebpackPlugin = require("clean-webpack-plugin");
-var path = require("path");
+﻿var CleanWebpackPlugin=require ("clean-webpack-plugin")
+import * as Webpack from 'webpack';
+import * as path from "path";
+
 var config = {
-    mode: "production",
+    mode:"production",
     module: {
         rules: [{
-                test: /\.tsx?$/,
-                use: 'awesome-typescript-loader'
-            }
+            test: /\.tsx?$/,
+            use: 'awesome-typescript-loader'
+        }
         ]
     },
     node: {
@@ -16,8 +16,9 @@ var config = {
         net: 'empty',
         tls: 'empty'
     },
+
     resolve: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx']
+        extensions: ['.js', '.ts','.jsx','.tsx']
     },
     entry: ['./App.tsx'],
     /*externals: {

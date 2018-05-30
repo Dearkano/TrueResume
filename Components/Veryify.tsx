@@ -59,9 +59,13 @@ export class Veryify extends React.Component<{}, {resume,resumes,done,resume1has
     }
     async verify() {
         const resume = await Nebulas.queryResume(md5(this.state.name));
-        const result = JSON.parse(resume.result.result);
-        const resumeHash = result.resumeHash;
-        this.setState({ verificationResult: resumeHash });
+        if (resume.result.result == "Error: No resume before.") {
+            this.setState({ verificationResult: "没有查询到相关简历" });
+        } else {
+            const result = JSON.parse(resume.result.result);
+            let resumeHash = result.resumeHash;
+            this.setState({ verificationResult: resumeHash });
+        }   
     }
     handleENameChange(e) {
         this.setState({ name: e.target.value });

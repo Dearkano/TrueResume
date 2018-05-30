@@ -50,16 +50,13 @@ export class LogIn extends React.Component<{}, { name, password ,tip}>{
                     <tbody>
                         <tr>
                             <td>user</td>
-                            <td>123456</td>
+                            <td>iamuser</td>
                         </tr>
-                    <tr>
-                            <td>n1QopLp3CrV9xZJtC7eF64kxDVhP3NTHruw</td>
-                        <td>zjutzj3160</td>
-                    </tr>
-                    <tr>
-                            <td>n1Y7qZ842hb3XhoqfzpMwyKWYNXYtixddPm</td>
-                        <td>123456789</td>
-                        </tr>          
+                        <tr>
+                            <td>manager</td>
+                            <td>iammanager</td>
+                        </tr>
+                          
                         
                 </tbody>
                 </Table>
