@@ -1,5 +1,6 @@
 
+*.js
+App.js
 /node_modules
 /bin
 /obj
-*.js
