@@ -20,6 +20,7 @@
     <None Remove="Components\MainPage.tsx" />
     <None Remove="Components\MyResume.tsx" />
     <None Remove="Components\NebulasTest.tsx" />
+    <None Remove="Components\Register.tsx" />
     <None Remove="Components\Veryify.tsx" />
     <None Remove="Header.tsx" />
     <None Remove="Hyperchain.tsx" />
@@ -45,6 +46,7 @@
     <TypeScriptCompile Include="Components\MainPage.tsx" />
     <TypeScriptCompile Include="Components\MyResume.tsx" />
     <TypeScriptCompile Include="Components\NebulasTest.tsx" />
+    <TypeScriptCompile Include="Components\Register.tsx" />
     <TypeScriptCompile Include="Components\Veryify.tsx" />
     <TypeScriptCompile Include="Hyperchain.tsx" />
     <TypeScriptCompile Include="Nebulas.tsx" />

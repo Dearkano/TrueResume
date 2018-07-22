@@ -1,7 +1,9 @@
 ﻿import * as React from "react";
 import * as Hyperchain from "../Hyperchain"
 import * as Nebulas from "../Nebulas"
+import * as md5 from 'md5';
 import { Table, Button, ProgressBar } from 'react-bootstrap';
+import { NEG_ONE } from 'long';
 interface Resume {
     name: string,
     age: string,
@@ -20,12 +22,16 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
         const jstr = JSON.stringify(this.state.resume);
         localStorage.setItem("myResume", jstr);
         const curUser = localStorage.getItem("HCAccount");
-        let Args: string[] = [curUser, this.state.resume.name, jstr];
-        //await Hyperchain.InvokeContract(Hyperchain.FormData(Args), "invoke")
-        //const args = await Nebulas.addResume(Nebulas.formData(Args));
-        //await Nebulas.queryResume("vayne tian");
-        localStorage.setItem("myResumeData", JSON.stringify(Nebulas.formData(Args)));
+        const resumeHash = md5(jstr);
+        const nameHash = md5(this.state.resume.name);
+        let Args = {
+            resume: this.state.resume,
+            name: nameHash,
+            resumeHash:resumeHash
+        };
+        localStorage.setItem("myResumeData", JSON.stringify(Args));
         localStorage.setItem("myResumeState", "wait");
+        await Nebulas.handoutReq(curUser, JSON.stringify(Args));
         document.location.href = "/myresume";
     }
     handleNameChange(e) {
@@ -111,9 +117,9 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
             
             const Args = JSON.parse(localStorage.getItem("myResumeData"));
             console.log(Args);
-            const nameHash = Args[1];
-            const address = Args[0];
-            const data = JSON.parse(Args[2]);
+            const nameHash = Args.name;
+            //const address = Args[0];
+            const data = Args.resume;
             return <div style={{
                 display: "flex", flexDirection: "column"
             }}>
@@ -135,7 +141,7 @@ export class MyResume extends React.Component<{}, { resume: Resume }>{
                         </tr>
                         <tr>
                             <td>地址</td>
-                            <td>{address}</td>
+                            <td>qdw</td>
                         </tr>
                         <tr>
                             <td>年龄</td>

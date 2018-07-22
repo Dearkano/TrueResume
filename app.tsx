@@ -17,6 +17,7 @@ import { MyResume } from "./Components/MyResume";
 import { Veryify } from "./Components/Veryify";
 import { UserCenter } from "./Components/UserCenter";
 import { NebulasTest } from "./Components/NebulasTest";
+import { Register } from "./Components/Register";
 export class App extends React.Component<{}, {}>{
     render() {
         return <Router>
@@ -30,6 +31,7 @@ export class App extends React.Component<{}, {}>{
                 <Route exact path="/verify" component={Veryify} />
                 <Route exact path="/usercenter" component={UserCenter} />
                 <Route exact path="/nebulas" component={NebulasTest} />
+                <Route exact path="/register" component={Register} />
                 <Footer />
             </div>
             </Router>

@@ -1,11 +1,11 @@
 ﻿import * as md5 from "md5";
 import * as NebPay from "nebpay";
 import * as $ from 'jquery';
-export function formData(Args: string[]) {
+export function formData(Args) {
     //生成md5
-    var resume = Args[2].toString();
+    var resume = Args[2];
     var address = Args[0];
-    var resumeHash = md5(resume);
+    var resumeHash = md5(resume.toString());
     console.log("on chain = " + resume);
     console.log("on chain hash = " + resumeHash);
     var nameHash = md5(Args[1]);
@@ -27,20 +27,24 @@ export async function getNonce(address) {
     return nonce;
 }
 var intervalQuery;
-export async function addResume(args: string[]) {
+async function updateReq(id) {
+    const url = `http://111.231.75.113:9012/api/resume/update/${id}`;
+    await fetch(url);
+}
+export async function addResume(args,id) {
     var nebPay = new NebPay();
     var serialNumber; //交易序列号
     var intervalQuery; //定时查询交易结果
     var to = "n1rkPbRrsvesLJFS8HqUBmXE3ZrxSCLqGih";   //Dapp的合约地址
     var value = "0";
     var callFunction = "save" //调用的函数名称
-    const data = [{ nameHash: args[1], resume: args[2], resumeHash: args[3] }];
+    const data = [{ nameHash: args.name, resume: JSON.stringify(args.resume), resumeHash: args.nameHash }];
     var callArgs = JSON.stringify(data);  //参数格式为参数数组的JSON字符串, 比如'["arg"]','["arg1","arg2]'        
    
 
     //发送交易(发起智能合约调用)
     serialNumber = nebPay.call(to, value, callFunction, callArgs);
-
+    await updateReq(id);
     //设置定时查询交易结果
     intervalQuery = setInterval(function () {
         funcIntervalQuery(serialNumber,null);
@@ -119,16 +123,44 @@ export async function queryResume(nameHash) {
     return data;
 }
 
-export function login(account, password) {
-    const users = [
-        { account: "user", password: "iamuser" },
-        { account: "manager", password: "iammanager" },
-    ];
-    for (let i in users) {
-        if (users[i].account == account && users[i].password == password) {
-            localStorage.setItem("HCAccount", users[i].account);
-            return true;
+
+export async function login(name, password) {
+    const url = `http://111.231.75.113:9012/api/account/login`;
+    const headers = { "Content-Type": "application/json" };
+    const body = JSON.stringify(
+        {
+            name: name,
+            password: password,
+            address: ""
+        })
+    const response = await fetch(url, { method: "POST", headers, body });
+    if (response.status == 200) {
+        return "success";
+    } else if (response.status == 401) {
+        const data = await response.text();
+        if (data == "nouser") {
+            return "nouser";
+        } else {
+            return "passwordError"
         }
     }
-    return false;
+}
+
+export async function handoutReq(name, data) {
+    const url = `http://111.231.75.113:9012/api/resume/request`;
+    const headers = { "Content-Type": "application/json" };
+    const body = JSON.stringify(
+        {
+            name: name,
+            resume: data
+        })
+    const response = await fetch(url, { method: "POST", headers, body });
+}
+
+export async function getReqs() {
+    const url = `http://111.231.75.113:9012/api/resume/request`;
+
+    const response = await fetch(url);
+    const data = response.json();
+    return data;
 }

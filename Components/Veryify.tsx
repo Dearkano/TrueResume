@@ -201,14 +201,14 @@ export class Veryify extends React.Component<{}, {resume,resumes,done,resume1has
         return <div style={{
             display: "flex", flexDirection: 'column', justifyContent: "center", alignItems:"center"
         }}>
-            <h1>Step 1</h1>
+            <h1>Step 1 (根据姓名查询简历哈希)</h1>
             <div style={{ display: "flex" }}>
                 <div className="login-form">
                     <p>姓名</p><input name="username" type="text" id="loginName" onChange={this.handleENameChange.bind(this)} value={this.state.name} autoComplete="username" /><Button bsStyle="info" style={{ marginLeft:"1rem" }} onClick={this.verify.bind(this)}>查询</Button>
                 </div>
                 <div className="row">查询哈希：{this.state.verificationResult}</div>
             </div>
-            <h1>Step 2</h1>
+            <h1>Step 2 （验证简历内容是否为真）</h1>
             <div className="column">
                 <div className="form-group">
                     <label htmlFor="username">姓名：</label>
@@ -248,7 +248,7 @@ export class Veryify extends React.Component<{}, {resume,resumes,done,resume1has
             </div>
 
         
-            <h1>Step 3</h1>
+            <h1>Step 3 （模拟真实HR业务工作场景批量导入简历JSON）</h1>
             <Button bsStyle="info" style={{width:"400px"}}onClick={this.getResume.bind(this)}>获取简历</Button>
             {res}
         </div>;

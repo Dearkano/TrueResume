@@ -33,7 +33,6 @@ export class MainPage extends React.Component<{}, { key }> {
                     <ListGroup>
 
                         <ListGroupItem><a href="https://github.com/Dearkano/ResumeVerification">测试教程&Github地址: https://github.com/Dearkano/ResumeVerification </a></ListGroupItem>
-                        <ListGroupItem>本次webapp仅作为demo为保证不请求用户的私钥，使用主机上开发者个人申请的几个账号作为测试使用</ListGroupItem>
                         <ListGroupItem>本系统属于个人开发原创，如有任何抄袭行为将予以追究</ListGroupItem>
                         <ListGroupItem>开发者：Vayne Tian 浙江大学计算机学院InCAS实验室</ListGroupItem>
 

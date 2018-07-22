@@ -38,7 +38,9 @@ export class Header extends React.Component {
                     <NavItem eventKey={2} href={isLogin?"/logout":"/login"}>
                         {isLogin?name+"/注销":"登录"}
       </NavItem>
-                    
+                    <NavItem eventKey={3} href="/register">
+                        注册
+                    </NavItem>
                 </Nav>
             </Navbar.Collapse>
         </Navbar></div>;
