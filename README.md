@@ -1,5 +1,7 @@
 # 基于星云链的简历验证系统
 
+Nebulas新App奖 https://incentive.nebulas.io/dapps-board.html#5
+
 **Abstract**
 
 With the rapid development of information technology and computer science,
